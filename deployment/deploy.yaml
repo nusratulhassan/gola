@@ -18,3 +18,5 @@ spec:
       containers:
       - name: go-hello-cnt
         image: vultik/del
+      imagePullSecrets:
+      - name: regcred
