@@ -55,12 +55,11 @@ jobs:
 #        appName: ${{ env.APP_NAME }}
 #        action: sync
 #        imageTag: ${{steps.getImageTag.outputs.imagetag}}
-    - uses: actions/checkout@v2
-      - name: Sync ArgoCD Application
-        uses: butterfly1924/argocd-actions@master
-        with:
-          address: ${{ env.ARGOCD_ENDPOINT }}
-          token: ${{ secrets.ARGOCD_AUTH_TOKEN }}
-          insecure: ${{ env.INSECURE }}
-          appName: ${{ env.APP_NAME }}
-          imageTag: ${{steps.getImageTag.outputs.imagetag}}
+    - name: Sync ArgoCD Application
+      uses: butterfly1924/argocd-actions@master
+      with:
+        address: ${{ env.ARGOCD_ENDPOINT }}
+        token: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        insecure: ${{ env.INSECURE }}
+        appName: ${{ env.APP_NAME }}
+        imageTag: ${{steps.getImageTag.outputs.imagetag}}
