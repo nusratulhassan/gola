@@ -56,7 +56,7 @@ jobs:
 #        action: sync
 #        imageTag: ${{steps.getImageTag.outputs.imagetag}}
     - name: Sync ArgoCD Application
-      uses: butterfly1924/argocd-actions@master
+      uses: Hanuvara/argocd-actions@master
       with:
         address: ${{ env.ARGOCD_ENDPOINT }}
         token: ${{ secrets.ARGOCD_AUTH_TOKEN }}
