@@ -19,4 +19,4 @@ spec:
       - name: go-hello-cnt
         image: vultik/del
       imagePullSecrets:
-      - name: regcred
+      - name: argocd/regcred
