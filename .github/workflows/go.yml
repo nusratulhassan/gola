@@ -46,12 +46,21 @@ jobs:
       run: |
         git_hash=$(git rev-parse --short "$GITHUB_SHA")
         echo "::set-output name=imagetag::$TAG_PREFIX-$git_hash"
-    - name: ArgoCD Application Sync Action
-      uses: omegion/argocd-actions@v0.2.0
-      with:
-        address: ${{ env.ARGOCD_ENDPOINT }}
-        token: ${{ secrets.ARGOCD_AUTH_TOKEN }}
-        insecure: ${{ env.INSECURE }}
-        appName: ${{ env.APP_NAME }}
-        action: sync
-        imageTag: ${{steps.getImageTag.outputs.imagetag}}
+#    - name: ArgoCD Application Sync Action
+#      uses: omegion/argocd-actions@v0.2.0
+#      with:
+#        address: ${{ env.ARGOCD_ENDPOINT }}
+#        token: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+#        insecure: ${{ env.INSECURE }}
+#        appName: ${{ env.APP_NAME }}
+#        action: sync
+#        imageTag: ${{steps.getImageTag.outputs.imagetag}}
+    - uses: actions/checkout@v2
+      - name: Sync ArgoCD Application
+        uses: butterfly1924/argocd-actions@master
+        with:
+          address: ${{ env.ARGOCD_ENDPOINT }}
+          token: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+          insecure: ${{ env.INSECURE }}
+          appName: ${{ env.APP_NAME }}
+          imageTag: ${{steps.getImageTag.outputs.imagetag}}
